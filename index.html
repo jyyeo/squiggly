@@ -81,7 +81,7 @@
 	function draw() {
 		drawPoint();
 
-		if (x+dotSize > canvas.width-3) {
+		if (y+dotSize > canvas.height-3 || y < 1) {
 			alert("GAME OVER");
 			clearInterval(interval);
 			continue;
