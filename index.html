@@ -14,6 +14,7 @@
 
 <script>
 	var canvas = document.getElementById("myCanvas");
+	canvas.setAttribute('style', "position: absolute; left: 50%; margin-left:-canvas.width/2; top: 50%; margin-right:-canvas.height/2;");
 	var ctx = canvas.getContext("2d");
 	var x = canvas.width/2;
 	var y = canvas.height/2;
@@ -76,7 +77,6 @@
 	}
 	
 	function draw() {
-		// ctx.clearRect(0, 0, canvas.width, canvas.height);
 		drawPoint();
 		if (up) {
 			y -= 1;
@@ -84,6 +84,7 @@
 				if (matrix[x+i][y] == 1) {
 					alert("GAME OVER");
 					clearInterval(interval);
+					continue;
 				}
 				else {
 					matrix[x+i][y] = 1;
@@ -96,6 +97,7 @@
 				if (matrix[x+i][y+dotSize] == 1) {
 					alert("GAME OVER");
 					clearInterval(interval);
+					continue;
 				}
 				else {
 					matrix[x+i][y] = 1;
@@ -108,6 +110,7 @@
 				if (matrix[x][y+i] == 1) {
 					alert("GAME OVER");
 					clearInterval(interval);
+					continue;
 				}
 				else {
 					matrix[x][y+i] = 1;
@@ -120,6 +123,7 @@
 				if (matrix[x+dotSize][y+i] == 1) {
 					alert("GAME OVER");
 					clearInterval(interval);
+					continue;
 				}
 				else {
 					matrix[x][y+i] = 1;
