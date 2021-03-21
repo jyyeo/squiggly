@@ -56,21 +56,6 @@
 		}
 	}
 
-	// function keyUpHandler(e) {
-	// 	if (e.key == "Up") {
-	// 		up = false;
-	// 	}
-	// 	else if (e.key == "Down") {
-	// 		down = false;
-	// 	}
-	// 	else if (e.key == "Left") {
-	// 		left = false;
-	// 	}
-	// 	else if (e.key == "Right") {
-	// 		right = false;
-	// 	}
-	// }
-
 	function drawPoint() {
 		ctx.beginPath();
 		ctx.rect(x, y, 5, 5);
@@ -83,20 +68,20 @@
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		drawPoint();
 		if (up) {
-			y += 5;
+			y += 1;
 		}
 		else if (down) {
-			y -= 5;
+			y -= 1;
 		}
 		else if (left) {
-			x -= 5;
+			x -= 1;
 		}
 		else if (right) {
-			x += 5;
+			x += 1;
 		}
 	}
 
-	setInterval(draw, 10);
+	setInterval(draw, 100);
 
 </script>
 
