@@ -30,25 +30,25 @@
 	document.addEventListener("keydown", keyDownHandler, false);
 
 	function keyDownHandler(e) {
-		if (e.key == "Up") {
+		if (e.key == "ArrowUp") {
 			up = true;
 			down = false;
 			left = false;
 			right = false;
 		}
-		else if (e.key == "Down") {
+		else if (e.key == "ArrowDown") {
 			up = false;
 			down = true;
 			left = false;
 			right = false;
 		}
-		else if (e.key == "Left") {
+		else if (e.key == "ArrowLeft") {
 			up = false;
 			down = false;
 			left = true;
 			right = false;
 		}
-		else if (e.key == "Right") {
+		else if (e.key == "ArrowRight") {
 			up = false;
 			down = false;
 			left = false;
