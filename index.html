@@ -14,16 +14,77 @@
 </head>
 <body>
 
-<canvas id="myCanvas" width = "500" height="500" style="border: 5px solid black"></canvas>
+<canvas id="myCanvas" width = "500" height="500" style="border: 3px solid black"></canvas>
 
 <script>
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
-	ctx.beginPath();
-	ctx.rect(250, 250, 5, 5);
-	ctx.fillStyle = "black";
-	ctx.fill();
-	ctx.closePath();
+	var x = canvas.width/2;
+	var y = canvas.height/2;
+	var up = false;
+	var down = false;
+	var left = false;
+	var right = false;
+	
+	document.addEventListener("keyup", keyUpHandler, false);
+	document.addEventListener("keydown", keyDownHandler, false);
+
+	function keyDownHandler(e) {
+		if (e.key == "Up") {
+			up = true;
+		}
+		else if (e.key == "Down") {
+			down = true;
+		}
+		else if (e.key == "Left") {
+			left = true;
+		}
+		else if (e.key == "Right") {
+			right = true;
+		}
+	}
+
+	function keyUpHandler(e) {
+		if (e.key == "Up") {
+			up = false;
+		}
+		else if (e.key == "Down") {
+			down = false;
+		}
+		else if (e.key == "Left") {
+			left = false;
+		}
+		else if (e.key == "Right") {
+			right = false;
+		}
+	}
+
+	function drawPoint() {
+		ctx.beginPath();
+		ctx.rect(x, y, 5, 5);
+		ctx.fillStyle = "black";
+		ctx.fill();		
+		ctx.closePath();
+	}
+	
+	function draw() {
+		drawPoint();
+		if (up) {
+			y += 5;
+		}
+		else if (down) {
+			y -= 5;
+		}
+		else if (left) {
+			x -= 5;
+		}
+		else if (right) {
+			x += 5;
+		}
+	}
+
+	setInterval(draw, 10);
+	
 </script>
 
 </body>
