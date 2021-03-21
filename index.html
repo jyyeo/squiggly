@@ -5,19 +5,12 @@
     <title>Squiggly</title>
     <style>
     	* { padding: 0; margin: 0; }
-    	canvas {
-    			position: relative;
-    			display: block;
-    			width: 500;
-    			height: 500;
-    			margin: 0;
-    			border: 3 solid black;
-    	}
+    	canvas {}
     </style>
 </head>
 <body>
 
-<canvas id="myCanvas"></canvas>
+<canvas id="myCanvas" width = "500" height="500" style="border: 3px solid black"></canvas>
 
 <script>
 	var canvas = document.getElementById("myCanvas");
@@ -39,6 +32,7 @@
 		}
 	}
 	
+	// document.addEventListener("keyup", keyUpHandler, false);
 	document.addEventListener("keydown", keyDownHandler, false);
 
 	function keyDownHandler(e) {
