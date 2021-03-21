@@ -81,11 +81,11 @@
 	function draw() {
 		drawPoint();
 
-		if (y+dotSize > canvas.height-3 || y < 1) {
-			alert("GAME OVER");
-			clearInterval(interval);
-			continue;
-		}
+		// if (y+dotSize > canvas.height-3 || y < 1) {
+		// 	alert("GAME OVER");
+		// 	clearInterval(interval);
+		// 	continue;
+		// }
 		if (up) {
 			y -= 1;
 			for (i = 0; i < 4; i++) {
