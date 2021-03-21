@@ -132,7 +132,11 @@
 				}
 			}
 		}
-		if (x < 0 || x+dotSize > canvas.width || y < 0 || y+dotSize > canvas.height) {
+		if (x<0) {
+			alert("GAME OVER");
+			clearInterval(interval);
+		}
+		if ((x < 0) || (x+dotSize > canvas.width) || (y < 0) || (y+dotSize > canvas.height)) {
 			alert("GAME OVER");
 			clearInterval(interval);
 		}
