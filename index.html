@@ -26,38 +26,50 @@
 	var left = false;
 	var right = false;
 	
-	document.addEventListener("keyup", keyUpHandler, false);
+	// document.addEventListener("keyup", keyUpHandler, false);
 	document.addEventListener("keydown", keyDownHandler, false);
 
 	function keyDownHandler(e) {
 		if (e.key == "Up") {
 			up = true;
+			down = false;
+			left = false;
+			right = false;
 		}
 		else if (e.key == "Down") {
+			up = false;
 			down = true;
+			left = false;
+			right = false;
 		}
 		else if (e.key == "Left") {
+			up = false;
+			down = false;
 			left = true;
+			right = false;
 		}
 		else if (e.key == "Right") {
+			up = false;
+			down = false;
+			left = false;
 			right = true;
 		}
 	}
 
-	function keyUpHandler(e) {
-		if (e.key == "Up") {
-			up = false;
-		}
-		else if (e.key == "Down") {
-			down = false;
-		}
-		else if (e.key == "Left") {
-			left = false;
-		}
-		else if (e.key == "Right") {
-			right = false;
-		}
-	}
+	// function keyUpHandler(e) {
+	// 	if (e.key == "Up") {
+	// 		up = false;
+	// 	}
+	// 	else if (e.key == "Down") {
+	// 		down = false;
+	// 	}
+	// 	else if (e.key == "Left") {
+	// 		left = false;
+	// 	}
+	// 	else if (e.key == "Right") {
+	// 		right = false;
+	// 	}
+	// }
 
 	function drawPoint() {
 		ctx.beginPath();
@@ -68,6 +80,7 @@
 	}
 	
 	function draw() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		drawPoint();
 		if (up) {
 			y += 5;
@@ -84,7 +97,7 @@
 	}
 
 	setInterval(draw, 10);
-	
+
 </script>
 
 </body>
