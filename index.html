@@ -80,6 +80,12 @@
 	
 	function draw() {
 		drawPoint();
+
+		if ((x < 3) || (x+dotSize > canvas.width-3) || (y < 3) || (y+dotSize > canvas.height-3)) {
+			alert("GAME OVER");
+			clearInterval(interval);
+		}
+		
 		if (up) {
 			y -= 1;
 			for (i = 0; i < 4; i++) {
@@ -131,14 +137,6 @@
 					matrix[x][y+i] = 1;
 				}
 			}
-		}
-		if (x<0) {
-			alert("GAME OVER");
-			clearInterval(interval);
-		}
-		if ((x < 3) || (x+dotSize > canvas.width-3) || (y < 3) || (y+dotSize > canvas.height-3)) {
-			alert("GAME OVER");
-			clearInterval(interval);
 		}
 	}
 
