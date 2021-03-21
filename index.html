@@ -5,19 +5,23 @@
     <title>Gamedev Canvas Workshop</title>
     <style>
     	* { padding: 0; margin: 0; }
-    	canvas { background: #eee; display: block; margin: 0 auto; }
+    	canvas { background: #000000;
+    			 height: 100px;
+    			 width: 100 px;
+    			 border: 1px white 
+    			 display: block; margin: 0 auto; }
     </style>
 </head>
 <body>
 
-<canvas id="myCanvas" width="480" height="320"></canvas>
+<!-- <canvas id="myCanvas" width="320" height="320" style="border:1px solid #000000"></canvas> -->
 
 <script>
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	ctx.beginPath();
-	ctx.rect(20, 40, 50, 50);
-	ctx.fillStyle = "#FF0000";
+	ctx.rect(20, 40, 5, 5);
+	ctx.fillStyle = "black";
 	ctx.fill();
 	ctx.closePath();
 </script>
