@@ -6,13 +6,11 @@
     <style>
     	* { padding: 0; margin: 0; }
     	canvas {
-    			position: absolute;
+    			position: relative;
+    			display: block;
     			width: 500;
     			height: 500;
-    			left: 50%;
-    			top:50%;
-    			margin-left: -250;
-    			margin-top: -250;
+    			margin: 0;
     			border: 3 solid black;
     	}
     </style>
@@ -41,7 +39,6 @@
 		}
 	}
 	
-	// document.addEventListener("keyup", keyUpHandler, false);
 	document.addEventListener("keydown", keyDownHandler, false);
 
 	function keyDownHandler(e) {
