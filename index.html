@@ -5,16 +5,24 @@
     <title>Squiggly</title>
     <style>
     	* { padding: 0; margin: 0; }
-    	canvas {}
+    	canvas {
+    			position: absolute;
+    			width: 500;
+    			height: 500;
+    			left: 50%;
+    			top:50%;
+    			margin-left: -250;
+    			margin-top: -250;
+    			border: 3 solid black;
+    	}
     </style>
 </head>
 <body>
 
-<canvas id="myCanvas" width = "500" height="500" style="border: 3px solid black"></canvas>
+<canvas id="myCanvas"></canvas>
 
 <script>
 	var canvas = document.getElementById("myCanvas");
-	canvas.setAttribute('style', "position: absolute; left: 50%; margin-left:-canvas.width/2; top: 50%; margin-right:-canvas.height/2;");
 	var ctx = canvas.getContext("2d");
 	var x = canvas.width/2;
 	var y = canvas.height/2;
