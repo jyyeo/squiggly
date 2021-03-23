@@ -7,16 +7,41 @@
 		canvas {
 			padding: 0;
 			margin: auto;
-			margin-top: 25%;
+			margin-top: 5%;
 			display: block;
 		}
 	</style>
+
+	<style>
+		.timeDiv {
+			text-align: center;
+			margin-top: 5%;
+			font-family: Verdana;
+		}
+	</style>
+
+	<style>
+		.instructionsDiv {
+			text-align: center;
+			margin-top: 5%;
+			font-family: Verdana;
+		}
+	</style>
+
+
 </head>
 <body>
 
-	<canvas id="myCanvas" width ="500" height="500" style="border: 5px solid black"></canvas>
+	<div class="timeDiv">
+		Seconds: <span id="time">0.0</span>
+	</div>
 
-	<div>Seconds: <span id="time">0.0</span></div>
+	<canvas id="myCanvas" width ="500" height="500" style="border: 5px solid black">
+	</canvas>	
+
+	<div class="instructionsDiv">
+		beep beep boop boop
+	</div>
 
 	<script>
 		var canvas = document.getElementById("myCanvas");
