@@ -1,153 +1,159 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>Squiggly.io</title>
-    <style>
-    	canvas {
-    			padding: 0;
-    			margin: auto;
-    			display: block;
-    			}
-    </style>
+	<meta charset="utf-8" />
+	<title>Squiggly.io</title>
+	<style>
+		canvas {
+			padding: 0;
+			margin: auto;
+			/*margin-top: 50%;*/
+			display: block;
+		}
+	</style>
 </head>
 <body>
 
-<canvas id="myCanvas" width = "40" height="60" style="border: 3px solid black"></canvas>
+	<canvas id="myCanvas" width ="200" height="200" style="border: 1px solid black"></canvas>
 
-<script>
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
-	var x = canvas.width/2;
-	var y = canvas.height/2;
-	var dotSize = 5;
-	var up = false;
-	var down = false;
-	var left = false;
-	var right = false;
-	var matrix = new Array(canvas.height);
-	for (var i = 0; i < canvas.height; i++) {
-		matrix[i] = new Array(canvas.width);
-	}
-	for (var i = 0; i < canvas.height; i++) {
-		for (var j = 0; j < canvas.width; j++) {
-			matrix[i][j] = 0;
-		}
-	}
-	
-	// document.addEventListener("keyup", keyUpHandler, false);
-	document.addEventListener("keydown", keyDownHandler, false);
+	<script>
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		var dotSize = 40;
+		var x = canvas.width/2 - dotSize/2;
+		var y = canvas.height/2 - dotSize/2;
+		var up = false;
+		var down = false;
+		var left = false;
+		var right = false;
+		speed = 10;
 
-	function keyDownHandler(e) {
-		if (e.key == "ArrowUp") {
-			up = true;
-			down = false;
-			left = false;
-			right = false;
+		var matrix = new Array(canvas.height);
+		for (var i = 0; i < canvas.height; i++) {
+			matrix[i] = new Array(canvas.width);
 		}
-		else if (e.key == "ArrowDown") {
-			up = false;
-			down = true;
-			left = false;
-			right = false;
-		}
-		else if (e.key == "ArrowLeft") {
-			up = false;
-			down = false;
-			left = true;
-			right = false;
-		}
-		else if (e.key == "ArrowRight") {
-			up = false;
-			down = false;
-			left = false;
-			right = true;
-		}
-	}
-
-	function drawPoint() {
-		ctx.beginPath();
-		ctx.rect(x, y, dotSize, dotSize);
-		for (i = 0; i < dotSize; i++) {
-			for (j = 0; j < dotSize; j++) {
-				matrix[x+i][y+j] = 1;
+		for (var i = 0; i < canvas.height; i++) {
+			for (var j = 0; j < canvas.width; j++) {
+				matrix[i][j] = 0;
 			}
 		}
-		ctx.fillStyle = "black";
-		ctx.fill();		
-		ctx.closePath();
-	}
-	
-	function draw() {
-		drawPoint();
+		
+		document.addEventListener("keydown", keyDownHandler, false);
 
-		// if (y+dotSize > canvas.height-3 || y < 1) {
-		// 	alert("GAME OVER");
-		// 	clearInterval(interval);
-		// 	continue;
-		// }
-		if (up) {
-			y -= 1;
-			for (i = 0; i < 4; i++) {
-				if (matrix[x+i][y] == 1) {
-					alert("GAME OVER");
-					clearInterval(interval);
-					continue;
+		function keyDownHandler(e) {
+			if (e.key == "ArrowUp") {
+				up = true;
+				down = false;
+				left = false;
+				right = false;
+			}
+			else if (e.key == "ArrowDown") {
+				up = false;
+				down = true;
+				left = false;
+				right = false;
+			}
+			else if (e.key == "ArrowLeft") {
+				up = false;
+				down = false;
+				left = true;
+				right = false;
+			}
+			else if (e.key == "ArrowRight") {
+				up = false;
+				down = false;
+				left = false;
+				right = true;
+			}
+		}
+
+		function drawPoint() {
+			ctx.beginPath();
+			ctx.rect(x, y, dotSize, dotSize);
+			for (var i = 0; i < dotSize; i++) {
+				for (var j = 0; j < dotSize; j++) {
+					matrix[y+i][x+j] = 1;
+				}
+			}
+			ctx.fillStyle = "black";
+			ctx.fill();		
+			ctx.closePath();
+		}
+		
+		function gameOver() {
+			alert("GAME OVER");
+			alert(y);
+			alert(x);
+			document.location.reload();
+			clearInterval(interval);
+		}
+
+		function draw() {
+			if (up) {
+				y -= speed;
+				if (y < 0) {
+					gameOver();
+				}
+				else if (y >= speed) {
+					for (var i = 0; i < dotSize; i++) {
+						if (matrix[y][x+i] == 1) {
+							gameOver();
+							break;
+						}
+					}
+				}
+			}
+
+			else if (down) {
+				y += speed;
+				if (y + dotSize - speed > canvas.height) {
+					gameOver();
 				}
 				else {
-					matrix[x+i][y] = 1;
+					for (var i = 0; i < dotSize; i++) {
+						if (matrix[y+dotSize-speed][x+i] == 1) {
+							gameOver();
+							break;
+						}
+					}
 				}
 			}
-		}
-		else if (down) {
-			y += 1;
-			for (i = 0; i < 4; i++) {
-				if (matrix[x+i][y+dotSize] == 1) {
-					alert("GAME OVER");
-					clearInterval(interval);
-					continue;
-				}
-				else {
-					matrix[x+i][y] = 1;
-				}
-			}
-		}
-		else if (left) {
-			x -= 1;
-			for (i = 0; i < 4; i++) {
-				if (matrix[x][y+i] == 1) {
-					alert("GAME OVER");
-					clearInterval(interval);
-					continue;
-				}
-				else {
-					matrix[x][y+i] = 1;
-				}
-			}
-		}
-		else if (right) {
-			x += 1;
-			for (i = 0; i < 4; i++) {
-				if (matrix[x+dotSize][y+i] == 1) {
-					alert("GAME OVER");
-					clearInterval(interval);
-					continue;
-				}
-				else {
-					matrix[x][y+i] = 1;
-				}
-			}
-		}
-		// if ((x < 1) || (x+dotSize > canvas.width) || (y < 0) || (y+dotSize > canvas.height)) {
-		// 	alert("GAME OVER");
-		// 	clearInterval(interval);
-		// 	continue;
-		// }
-	}
 
-	var interval = setInterval(draw, 100);
+			else if (left) {
+				x -= speed;
+				if (x < 0) {
+					gameOver();
+				}
+				else {
+					for (var i = 0; i < dotSize; i++) {
+						if (matrix[y+i][x] == 1) {
+							gameOver();
+							break;
+						}
+					}
+				}
+			}
 
-</script>
+			else if (right) {
+				x += speed;
+				if (x + dotSize - speed > canvas.width) {
+					gameOver();
+				}
+				else {
+					for (var i = 0; i < dotSize; i++) {
+						if (matrix[y+i][x+dotSize-speed] == 1) {
+							gameOver();
+							break;
+						}
+					}
+				}
+			}
+			drawPoint();
+		}
+		drawPoint();	
+		var interval = setInterval(draw, 100);
+
+	</script>
 
 </body>
 </html>
