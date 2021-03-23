@@ -7,14 +7,16 @@
 		canvas {
 			padding: 0;
 			margin: auto;
-			/*margin-top: 50%;*/
+			margin-top: 25%;
 			display: block;
 		}
 	</style>
 </head>
 <body>
 
-	<canvas id="myCanvas" width ="200" height="200" style="border: 1px solid black"></canvas>
+	<canvas id="myCanvas" width ="500" height="500" style="border: 5px solid black"></canvas>
+
+	<div>Seconds: <span id="time">0.0</span></div>
 
 	<script>
 		var canvas = document.getElementById("myCanvas");
@@ -82,8 +84,6 @@
 		
 		function gameOver() {
 			alert("GAME OVER");
-			alert(y);
-			alert(x);
 			document.location.reload();
 			clearInterval(interval);
 		}
@@ -150,8 +150,18 @@
 			}
 			drawPoint();
 		}
+
+		var timeElapsed = 0;
+		function timer() {
+			if (up || down || left || right) {
+				timeElapsed += 0.1;
+				timeElapsed = Math.round(timeElapsed * 10) / 10;
+				document.getElementById("time").innerHTML = timeElapsed;
+			}
+		}
+
 		drawPoint();	
-		var interval = setInterval(draw, 100);
+		var interval = setInterval(function() {draw(), timer()}, 100);
 
 	</script>
 
