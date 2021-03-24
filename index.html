@@ -3,14 +3,6 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Squiggly.io</title>
-	<style>
-		canvas {
-			padding: 0;
-			margin: auto;
-			margin-top: 5%;
-			display: block;
-		}
-	</style>
 
 	<style>
 		.timeDiv {
@@ -21,10 +13,19 @@
 	</style>
 
 	<style>
-		.instructionsDiv {
+		div {
 			text-align: center;
 			margin-top: 5%;
 			font-family: Verdana;
+		}
+	</style>
+
+	<style>
+		canvas {
+			padding: 0;
+			margin: auto;
+			margin-top: 5%;
+			display: block;
 		}
 	</style>
 
@@ -41,13 +42,15 @@
 <body>
 
 	<div class="timeDiv">
-		Seconds: <span id="time">0.0</span>
+		Score: <span id="time">0</span>
+	</div>
+
+	<div id="gameOverDiv">
+		Press any arrow key to start
 	</div>
 
 	<canvas id="myCanvas" width ="500" height="500" style="border: 5px solid black">
 	</canvas>	
-
-	<img src="keyboardArrows.png" alt="Keyboard Arrows" class="keyboardArrows" style="width: 30%">
 
 	<script>
 		var canvas = document.getElementById("myCanvas");
@@ -114,8 +117,11 @@
 		}
 		
 		function gameOver() {
-			alert("GAME OVER");
-			document.location.reload();
+			up = false;
+			down = false;
+			left = false;
+			right = false;
+			document.getElementById("gameOverDiv").innerHTML = "GAME OVER";
 			clearInterval(interval);
 		}
 
@@ -183,11 +189,12 @@
 		}
 
 		var timeElapsed = 0;
+
 		function timer() {
 			if (up || down || left || right) {
-				timeElapsed += 0.1;
-				timeElapsed = Math.round(timeElapsed * 10) / 10;
+				timeElapsed += 1;
 				document.getElementById("time").innerHTML = timeElapsed;
+				document.getElementById("gameOverDiv").innerHTML = "<br>";
 			}
 		}
 
