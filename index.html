@@ -5,14 +5,6 @@
 	<title>Squiggly.io</title>
 
 	<style>
-		.timeDiv {
-			text-align: center;
-			margin-top: 5%;
-			font-family: Verdana;
-		}
-	</style>
-
-	<style>
 		div {
 			text-align: center;
 			margin-top: 5%;
@@ -30,18 +22,24 @@
 	</style>
 
 	<style>
-	img{
-		display: block;
-		margin-top: 5%;
-		margin-left: auto;
-		margin-right: auto;
-	}	
+		img {
+			display: block;
+			margin-top: 5%;
+			margin-left: auto;
+			margin-right: auto;
+		}	
+
+		button {
+			font-family: Verdana;
+			margin-left: auto;
+			margin-right: auto;
+		}
 	</style>
 
 </head>
 <body>
 
-	<div class="timeDiv">
+	<div id="timeDiv">
 		Score: <span id="time">0</span>
 	</div>
 
@@ -51,6 +49,8 @@
 
 	<canvas id="myCanvas" width ="500" height="500" style="border: 5px solid black">
 	</canvas>	
+
+	<button id="slowerB">Slower</button>
 
 	<script>
 		var canvas = document.getElementById("myCanvas");
@@ -62,7 +62,8 @@
 		var down = false;
 		var left = false;
 		var right = false;
-		speed = 10;
+		var speed = 10;
+		var refreshRate = 100;
 
 		var matrix = new Array(canvas.height);
 		for (var i = 0; i < canvas.height; i++) {
@@ -73,8 +74,15 @@
 				matrix[i][j] = 0;
 			}
 		}
-		
+
+		var slowerB = document.getElementById('slowerB');
+		slowerB.onclick = changeSpeed;
+
 		document.addEventListener("keydown", keyDownHandler, false);
+
+		function changeSpeed() {
+			refreshRate *= 2;
+		}
 
 		function keyDownHandler(e) {
 			if (e.key == "ArrowUp") {
@@ -192,14 +200,25 @@
 
 		function timer() {
 			if (up || down || left || right) {
-				timeElapsed += 1;
+				timeElapsed += Math.round(100/refreshRate);
 				document.getElementById("time").innerHTML = timeElapsed;
 				document.getElementById("gameOverDiv").innerHTML = "<br>";
 			}
 		}
 
 		drawPoint();	
-		var interval = setInterval(function() {draw(), timer()}, 100);
+		// var setRefreshRate = function() {
+		// 	clearInterval(interval);
+		// 	interval = setInterval(function() {draw(), timer()}, refreshRate);
+		// }
+		// var interval = setInterval(function() {draw(), timer()}, refreshRate);
+		var interval = setInterval(eachIteration, refreshRate);
+			function eachIteration() {
+				draw();
+				timer();
+				clearInterval(interval);
+				interval = setInterval(eachIteration, refreshRate);
+			}
 
 	</script>
 
