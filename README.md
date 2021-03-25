@@ -1,4 +1,6 @@
 # squiggly
+Link to game: https://jyyeo.github.io/squiggly/
+
 This is a side project I started recently while thinking about game strategies. The focus here is not the frontend, rather, I'ld like to encourage people to play smart and basically, STRATEGIZE!
 
 ## How to play:
