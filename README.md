@@ -11,3 +11,4 @@ This is a side project I started recently while thinking about game strategies. 
 1. Determine maximum number of points
 2. Multi-player mode
 3. Ability to choose starting point
+4. Vary speed of game
