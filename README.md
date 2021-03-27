@@ -8,7 +8,5 @@ This is a side project I started recently while thinking about game strategies. 
 2. Avoid bumping into areas that were previously covered
 
 ## Features coming up:
-1. Determine maximum number of points
-2. Multi-player mode
-3. Ability to choose starting point
-4. Vary speed of game
+1. Multi-player mode
+2. Ability to choose starting point
