@@ -10,18 +10,14 @@
 			margin-top: 5%;
 			font-family: Verdana;
 		}
-	</style>
 
-	<style>
 		canvas {
 			padding: 0;
 			margin: auto;
 			margin-top: 5%;
 			display: block;
 		}
-	</style>
 
-	<style>
 		img {
 			display: block;
 			margin-top: 5%;
@@ -30,9 +26,8 @@
 		}	
 
 		button {
+			text-align: center;
 			font-family: Verdana;
-			margin-left: auto;
-			margin-right: auto;
 		}
 	</style>
 
@@ -50,7 +45,10 @@
 	<canvas id="myCanvas" width ="500" height="500" style="border: 5px solid black">
 	</canvas>	
 
-	<button id="slowerB">Slower</button>
+	<div>
+		<button id="slowerBtn">Slower</button>
+		<button id="fasterBtn">Faster</button>
+	</div>
 
 	<script>
 		var canvas = document.getElementById("myCanvas");
@@ -75,13 +73,18 @@
 			}
 		}
 
-		var slowerB = document.getElementById('slowerB');
-		slowerB.onclick = changeSpeed;
-
+		var slowerBtn = document.getElementById('slowerBtn');
+		slowerBtn.onclick = slower;
+		var fasterBtn = document.getElementById('fasterBtn');
+		fasterBtn.onclick = faster;
 		document.addEventListener("keydown", keyDownHandler, false);
 
-		function changeSpeed() {
+		function slower() {
 			refreshRate *= 2;
+		}
+
+		function faster() {
+			refreshRate /= 2;
 		}
 
 		function keyDownHandler(e) {
@@ -207,11 +210,7 @@
 		}
 
 		drawPoint();	
-		// var setRefreshRate = function() {
-		// 	clearInterval(interval);
-		// 	interval = setInterval(function() {draw(), timer()}, refreshRate);
-		// }
-		// var interval = setInterval(function() {draw(), timer()}, refreshRate);
+
 		var interval = setInterval(eachIteration, refreshRate);
 			function eachIteration() {
 				draw();
