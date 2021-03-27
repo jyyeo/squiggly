@@ -203,8 +203,8 @@
 
 		function timer() {
 			if (up || down || left || right) {
-				timeElapsed += Math.round(100/refreshRate);
-				document.getElementById("time").innerHTML = timeElapsed;
+				timeElapsed += 100/refreshRate;
+				document.getElementById("time").innerHTML = Math.round(timeElapsed);
 				document.getElementById("gameOverDiv").innerHTML = "<br>";
 			}
 		}
